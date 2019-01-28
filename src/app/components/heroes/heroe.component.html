@@ -1,0 +1,68 @@
+<h3> Heroe <small>{{heroe.nombre || "Nuevo" }}</small></h3>
+<hr>
+<div class="row animated fadeIn fast">
+
+  <div class="col-md-12">
+    <div class="text-right">
+
+    <button (click)="agregarNuevo(forma)"
+            type="button"
+            class="btn btn-outline-primary"> Insertar Héroe </button>
+   </div>
+
+   <div *ngIf="guardado || actualizado"
+        class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+
+     <strong>Heroe {{ accion }}!</strong> correctamente
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form (ngSubmit)="guardar()" #forma="ngForm">
+
+    <div class="form-group">
+      <label>Nombre</label>
+      <input [(ngModel)]="heroe.nombre"
+             type="text" name="nombre"
+             class="form-control"
+             placeholder="Nombre"
+             required>
+    </div>
+
+    <div class="form-group">
+      <label>Casa</label>
+      <select [(ngModel)]="heroe.casa" class="form-control" name="casa">
+        <option value="Marvel"> Marvel </option>
+        <option value="DC"> DC </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Bio</label>
+      <textarea [(ngModel)]="heroe.bio"
+                name="bio"
+                type="text"
+                class="form-control"
+                required>
+
+      </textarea>
+    </div>
+
+    <div class="form-group text-center">
+      <button [disabled]="forma.invalid"
+              type="submit" class="btn btn-outline-success mr-2">
+       Guardar
+      </button>
+
+      <button [routerLink] = "['/heroes']"
+              type="button" class="btn btn-outline-danger">
+       Regresar
+      </button>
+
+    </div>
+
+    </form>
+
+  </div>
+
+</div>
